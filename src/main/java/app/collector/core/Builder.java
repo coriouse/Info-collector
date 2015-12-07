@@ -1,4 +1,4 @@
-package app.logaggregator.core;
+package app.collector.core;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class Builder {
 
 	}
 
-	protected StatisticAggregator aggregator;
+	protected Collector aggregator;
 
 	/**
 	 * init of plugin
@@ -47,7 +47,7 @@ public class Builder {
 	 * @return
 	 */
 	public String getPluginPath() {
-		return StatisticAggregator.ROOT_PATH + File.separator + name;
+		return Collector.ROOT_PATH + File.separator + name;
 	}
 
 	protected String getStatus(int problem) {

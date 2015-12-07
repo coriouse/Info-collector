@@ -1,10 +1,11 @@
-package app.logaggregator.plugins;
+package app.collector.plugin;
 
 import java.io.File;
-import app.logaggregator.core.Plugin;
-import app.logaggregator.core.Builder;
-import app.logaggregator.util.CommandExecutor;
-import app.logaggregator.util.Utils;
+
+import app.collector.core.Builder;
+import app.collector.core.Plugin;
+import app.collector.util.CollectorUtils;
+import app.collector.util.CommandExecutor;
 
 /**
  * Plugin class collect disk size usage
@@ -12,24 +13,23 @@ import app.logaggregator.util.Utils;
  * @author Ogarkov.Sergey
  *
  */
-public class DiskUsagePlugin extends Builder implements Plugin{
+public class DiskUsagePlugin extends Builder implements Plugin {
 
 	private final static String FILE = "diskusage.log";
 	private final static String COMMAND = "wmic logicaldisk get size,freespace,caption";
-	
+
 	@Override
 	public void make() {
 		execute();
 	}
-	
+
 	private void execute() {
 		try {
-			Utils.saveToFile(this.getPluginPath()+File.separator+FILE, CommandExecutor.launch(COMMAND));
+			CollectorUtils.saveToFile(this.getPluginPath() + File.separator + FILE, CommandExecutor.launch(COMMAND));
 		} catch (Exception e) {
 			problem++;
 			LOGGER.error(this.name, e);
 		}
 	}
-	
-	
-	}
+
+}

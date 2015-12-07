@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugins>
-	<plugin name="tomcat">app.logaggregator.plugins.LogTomcatPlugin</plugin>
-	<plugin name="set">app.logaggregator.plugins.SetWindowsPlugin</plugin>
-	<plugin name="installator">app.logaggregator.plugins.LogInstallatorPlugin</plugin>
-	<plugin name="systeminfo">app.logaggregator.plugins.SystemInfoWindowsPlugin</plugin>
-	<plugin name="hprof">app.logaggregator.plugins.HprofFilesPlugin</plugin>
-	<plugin name="diskusage">app.logaggregator.plugins.DiskUsagePlugin</plugin>	
-	<plugin name="tz">app.logaggregator.plugins.ChekingTimeZonePlugin</plugin>
-	<plugin name="javaversion">app.logaggregator.plugins.JavaVersionPlugin</plugin>
+	<plugin name="tomcat">app.collector.plugin.LogTomcatPlugin</plugin>
+	<plugin name="set">app.collector.plugin.SetWindowsPlugin</plugin>
+	<plugin name="installator">app.collector.plugin.LogInstallatorPlugin</plugin>
+	<plugin name="systeminfo">app.collector.plugin.SystemInfoWindowsPlugin</plugin>
+	<plugin name="hprof">app.collector.plugin.HprofFilesPlugin</plugin>
+	<plugin name="diskusage">app.collector.plugin.DiskUsagePlugin</plugin>	
+	<plugin name="tz">app.collector.plugin.ChekingTimeZonePlugin</plugin>
+	<plugin name="javaversion">app.collector.plugin.JavaVersionPlugin</plugin>
 </plugins>

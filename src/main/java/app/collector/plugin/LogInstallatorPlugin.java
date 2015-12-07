@@ -1,4 +1,4 @@
-package app.logaggregator.plugins;
+package app.collector.plugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-import app.logaggregator.core.Plugin;
-import app.logaggregator.core.Builder;
+import app.collector.core.Builder;
+import app.collector.core.Plugin;
 
 /**
  * Plugin class collect installator logs
@@ -23,18 +23,15 @@ public class LogInstallatorPlugin extends Builder implements Plugin {
 	public void make() {
 		collect();
 	}
-	
-	
+
 	private void collect() {
 		String workingdirectory = System.getProperty("user.home");
 		Path dir = new File(workingdirectory).toPath();
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
 			for (Path file : stream) {
-				if (file.getFileName().toString()
-						.startsWith("StateWatcher_logs_")) {
-					Files.createDirectories(new File(this.getPluginPath()
-							+ File.separator + file.getFileName().toString())
-							.toPath());
+				if (file.getFileName().toString().startsWith("StateWatcher_logs_")) {
+					Files.createDirectories(
+							new File(this.getPluginPath() + File.separator + file.getFileName().toString()).toPath());
 					copy(file);
 				}
 			}
@@ -48,10 +45,8 @@ public class LogInstallatorPlugin extends Builder implements Plugin {
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
 			for (Path file : stream) {
 				Files.copy(
-						file.toFile().toPath(),
-						new File(this.getPluginPath() + File.separator
-								+ path.getFileName().toString()
-								+ File.separator + file.getFileName()).toPath(),
+						file.toFile().toPath(), new File(this.getPluginPath() + File.separator
+								+ path.getFileName().toString() + File.separator + file.getFileName()).toPath(),
 						StandardCopyOption.REPLACE_EXISTING);
 			}
 		} catch (IOException | DirectoryIteratorException e) {

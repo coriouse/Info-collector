@@ -1,10 +1,11 @@
-package app.logaggregator.plugins;
+package app.collector.plugin;
 
 import java.io.File;
-import app.logaggregator.core.Plugin;
-import app.logaggregator.core.Builder;
-import app.logaggregator.util.CommandExecutor;
-import app.logaggregator.util.Utils;
+
+import app.collector.core.Builder;
+import app.collector.core.Plugin;
+import app.collector.util.CollectorUtils;
+import app.collector.util.CommandExecutor;
 
 /**
  * Plugin class collect system info windows
@@ -13,18 +14,18 @@ import app.logaggregator.util.Utils;
  *
  */
 public class SystemInfoWindowsPlugin extends Builder implements Plugin {
-	
-	private final static String FILE = "systeminfo.log";	
+
+	private final static String FILE = "systeminfo.log";
 	private final static String COMMAND = "systeminfo";
 
 	@Override
 	public void make() {
 		execute();
 	}
-	
+
 	private void execute() {
 		try {
-			Utils.saveToFile(this.getPluginPath()+File.separator+FILE, CommandExecutor.launch(COMMAND));
+			CollectorUtils.saveToFile(this.getPluginPath() + File.separator + FILE, CommandExecutor.launch(COMMAND));
 		} catch (Exception e) {
 			problem++;
 			LOGGER.error(this.name, e);
